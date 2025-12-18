@@ -1,5 +1,5 @@
 from app.database import get_firestore_client
-from models.product import Product
+from app.models.product import Product
 
 def get_all_products():
     db = get_firestore_client()

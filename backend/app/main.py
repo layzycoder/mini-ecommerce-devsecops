@@ -1,11 +1,19 @@
 from fastapi import FastAPI
 from app.database import get_firestore_client
-from routes import products
-from routes import orders
+from app.routes import products
+from app.routes import orders
 from app.routes import checkout
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="E-Commerce API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/health")
 def health_check():

@@ -4,11 +4,12 @@ from app.security import get_stripe_secret_key
 
 router = APIRouter(prefix="/checkout", tags=["Checkout"])
 
-stripe.api_key = get_stripe_secret_key()
+
 
 @router.post("/")
 def create_checkout_session(order: dict):
     try:
+        stripe.api_key = get_stripe_secret_key()
         line_items = []
 
         for item in order.get("items", []):
@@ -30,8 +31,8 @@ def create_checkout_session(order: dict):
             payment_method_types=["card"],
             line_items=line_items,
             mode="payment",
-            success_url="http://127.0.0.1:8000/success",
-            cancel_url="http://127.0.0.1:8000/cancel",
+            success_url="http://127.0.0.1:3000/cart.html?status=success",
+            cancel_url="http://127.0.0.1:3000/cart.html?status=cancel",
         )
 
         return {

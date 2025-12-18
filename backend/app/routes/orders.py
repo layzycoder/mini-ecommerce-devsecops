@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
-from controllers.order_controller import create_order, get_all_orders
+from app.controllers.order_controller import create_order, get_all_orders
 from app.auth import verify_admin
 
 

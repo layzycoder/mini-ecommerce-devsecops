@@ -1,12 +1,17 @@
+import os
 from google.cloud import secretmanager
 import google.auth
 
 
 def get_project_id() -> str:
+    project_id = os.getenv("GCP_PROJECT_ID")
+    if project_id:
+        return project_id
+
     _, project_id = google.auth.default()
 
     if not project_id:
-        raise RuntimeError("GCP project ID not available via default credentials")
+        raise RuntimeError("GCP project id not found. Set GCP_PROJECT_ID.")
 
     return project_id
 
