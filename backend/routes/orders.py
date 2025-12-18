@@ -1,5 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from controllers.order_controller import create_order, get_all_orders
+from app.auth import verify_admin
+
 
 router = APIRouter(prefix="/orders", tags=["Orders"])
 
@@ -11,6 +13,10 @@ def place_order(order: dict):
     return create_order(order)
 
 
-@router.get("/")
+# @router.get("/")
+# def list_orders():
+#     return get_all_orders()
+
+@router.get("/", dependencies=[Depends(verify_admin)])
 def list_orders():
     return get_all_orders()
