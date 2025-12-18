@@ -1,0 +1,430 @@
+{
+  "version": 4,
+  "terraform_version": "1.0.11",
+  "serial": 14,
+  "lineage": "78918601-a247-bf54-ce73-71a9cbe5d343",
+  "outputs": {
+    "artifact_registry_repo": {
+      "value": "mini-ecom-repo",
+      "type": "string"
+    },
+    "cloud_run_service_account": {
+      "value": "mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+      "type": "string"
+    },
+    "cloud_run_service_name": {
+      "value": "mini-ecom-api",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_artifact_registry_repository",
+      "name": "repo",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "cleanup_policies": [],
+            "cleanup_policy_dry_run": false,
+            "create_time": "2025-12-18T21:51:04.571140Z",
+            "description": "",
+            "docker_config": [],
+            "effective_labels": {},
+            "format": "DOCKER",
+            "id": "projects/project-df474831-af97-46b0-901/locations/us-east1/repositories/mini-ecom-repo",
+            "kms_key_name": "",
+            "labels": null,
+            "location": "us-east1",
+            "maven_config": [],
+            "mode": "STANDARD_REPOSITORY",
+            "name": "mini-ecom-repo",
+            "project": "project-df474831-af97-46b0-901",
+            "remote_repository_config": [],
+            "repository_id": "mini-ecom-repo",
+            "terraform_labels": {},
+            "timeouts": null,
+            "update_time": "2025-12-18T21:51:04.571140Z",
+            "virtual_repository_config": []
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.services"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service",
+      "name": "api",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "annotations": null,
+            "binary_authorization": [],
+            "client": null,
+            "client_version": null,
+            "conditions": null,
+            "create_time": null,
+            "creator": null,
+            "custom_audiences": null,
+            "delete_time": null,
+            "description": null,
+            "effective_annotations": null,
+            "effective_labels": null,
+            "etag": null,
+            "expire_time": null,
+            "generation": null,
+            "id": "projects/project-df474831-af97-46b0-901/locations/us-east1/services/mini-ecom-api",
+            "ingress": null,
+            "labels": null,
+            "last_modifier": null,
+            "latest_created_revision": null,
+            "latest_ready_revision": null,
+            "launch_stage": null,
+            "location": "us-east1",
+            "name": "mini-ecom-api",
+            "observed_generation": null,
+            "project": "project-df474831-af97-46b0-901",
+            "reconciling": null,
+            "template": [
+              {
+                "annotations": null,
+                "containers": [
+                  {
+                    "args": null,
+                    "command": null,
+                    "depends_on": null,
+                    "env": [
+                      {
+                        "name": "GOOGLE_CLOUD_PROJECT",
+                        "value": "project-df474831-af97-46b0-901",
+                        "value_source": []
+                      },
+                      {
+                        "name": "GCP_PROJECT_ID",
+                        "value": "project-df474831-af97-46b0-901",
+                        "value_source": []
+                      }
+                    ],
+                    "image": "us-docker.pkg.dev/project-df474831-af97-46b0-901/mini-ecom-repo/mini-ecom-api:latest",
+                    "liveness_probe": [],
+                    "name": "",
+                    "ports": [
+                      {
+                        "container_port": 8080,
+                        "name": ""
+                      }
+                    ],
+                    "resources": [],
+                    "startup_probe": [],
+                    "volume_mounts": [],
+                    "working_dir": ""
+                  }
+                ],
+                "encryption_key": "",
+                "execution_environment": "",
+                "labels": null,
+                "max_instance_request_concurrency": 0,
+                "revision": "",
+                "scaling": [],
+                "service_account": "mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+                "session_affinity": false,
+                "timeout": "",
+                "volumes": [],
+                "vpc_access": []
+              }
+            ],
+            "terminal_condition": null,
+            "terraform_labels": null,
+            "timeouts": null,
+            "traffic": null,
+            "traffic_statuses": null,
+            "uid": null,
+            "update_time": null,
+            "uri": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "google_project_service.services",
+            "google_service_account.run_sa"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_cloud_run_v2_service_iam_member",
+      "name": "public_invoker",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_iam_member",
+      "name": "firestore_user",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "condition": [],
+            "etag": "BwZGQPWWC0k=",
+            "id": "project-df474831-af97-46b0-901/roles/datastore.user/serviceAccount:mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+            "member": "serviceAccount:mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+            "project": "project-df474831-af97-46b0-901",
+            "role": "roles/datastore.user"
+          },
+          "sensitive_attributes": [],
+          "private": "bnVsbA==",
+          "dependencies": [
+            "google_project_service.services",
+            "google_service_account.run_sa"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_project_service",
+      "name": "services",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "artifactregistry.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/artifactregistry.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "artifactregistry.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "cloudbuild.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/cloudbuild.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "cloudbuild.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "firestore.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/firestore.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "firestore.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "iam.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/iam.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "iam.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "logging.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/logging.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "logging.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "run.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/run.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "run.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        },
+        {
+          "index_key": "secretmanager.googleapis.com",
+          "schema_version": 0,
+          "attributes": {
+            "disable_dependent_services": null,
+            "disable_on_destroy": false,
+            "id": "project-df474831-af97-46b0-901/secretmanager.googleapis.com",
+            "project": "project-df474831-af97-46b0-901",
+            "service": "secretmanager.googleapis.com",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInJlYWQiOjYwMDAwMDAwMDAwMCwidXBkYXRlIjoxMjAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_secret_manager_secret",
+      "name": "admin_password",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "annotations": {},
+            "create_time": "2025-12-18T00:25:57.244052Z",
+            "effective_annotations": {},
+            "effective_labels": {},
+            "expire_time": "",
+            "id": "projects/project-df474831-af97-46b0-901/secrets/admin-password",
+            "labels": {},
+            "name": "projects/1065151385744/secrets/admin-password",
+            "project": "project-df474831-af97-46b0-901",
+            "replication": [
+              {
+                "auto": [
+                  {
+                    "customer_managed_encryption": []
+                  }
+                ],
+                "user_managed": []
+              }
+            ],
+            "rotation": [],
+            "secret_id": "admin-password",
+            "terraform_labels": {},
+            "timeouts": null,
+            "topics": [],
+            "ttl": null,
+            "version_aliases": {},
+            "version_destroy_ttl": ""
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMCJ9"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_secret_manager_secret",
+      "name": "stripe_secret_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "annotations": {},
+            "create_time": "2025-12-18T07:43:12.358608Z",
+            "effective_annotations": {},
+            "effective_labels": {},
+            "expire_time": "",
+            "id": "projects/project-df474831-af97-46b0-901/secrets/stripe-secret-key",
+            "labels": {},
+            "name": "projects/1065151385744/secrets/stripe-secret-key",
+            "project": "project-df474831-af97-46b0-901",
+            "replication": [
+              {
+                "auto": [
+                  {
+                    "customer_managed_encryption": []
+                  }
+                ],
+                "user_managed": []
+              }
+            ],
+            "rotation": [],
+            "secret_id": "stripe-secret-key",
+            "terraform_labels": {},
+            "timeouts": null,
+            "topics": [],
+            "ttl": null,
+            "version_aliases": {},
+            "version_destroy_ttl": ""
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMCJ9"
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_secret_manager_secret_iam_member",
+      "name": "admin_secret_access",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "mode": "managed",
+      "type": "google_secret_manager_secret_iam_member",
+      "name": "stripe_secret_access",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": []
+    },
+    {
+      "mode": "managed",
+      "type": "google_service_account",
+      "name": "run_sa",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "mini-ecom-api-sa",
+            "create_ignore_already_exists": null,
+            "description": "",
+            "disabled": false,
+            "display_name": "Cloud Run SA for mini-ecom-api",
+            "email": "mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+            "id": "projects/project-df474831-af97-46b0-901/serviceAccounts/mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+            "member": "serviceAccount:mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+            "name": "projects/project-df474831-af97-46b0-901/serviceAccounts/mini-ecom-api-sa@project-df474831-af97-46b0-901.iam.gserviceaccount.com",
+            "project": "project-df474831-af97-46b0-901",
+            "timeouts": null,
+            "unique_id": "106060663206938633561"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "google_project_service.services"
+          ]
+        }
+      ]
+    }
+  ]
+}
