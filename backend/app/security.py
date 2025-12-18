@@ -19,3 +19,11 @@ def get_admin_password() -> str:
 
     response = client.access_secret_version(name=name)
     return response.payload.data.decode("UTF-8").strip()
+
+def get_stripe_secret_key() -> str:
+    project_id = get_project_id()
+    client = secretmanager.SecretManagerServiceClient()
+    name = f"projects/{project_id}/secrets/stripe-secret-key/versions/latest"
+
+    response = client.access_secret_version(name=name)
+    return response.payload.data.decode("UTF-8").strip()
