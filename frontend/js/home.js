@@ -2,11 +2,11 @@
   const featured = document.getElementById("featured");
   try {
     const products = await apiGet("/products");
-    products.slice(0, 6).forEach(p => {
+    products.slice(0, 10).forEach(p => {
       const div = document.createElement("div");
       div.className = "card";
       div.innerHTML = `
-        <img src="${p.image_url || "https://via.placeholder.com/300x200"}" alt="${p.name}">
+        <img src="${p.image_url || "https://storage.googleapis.com/mini-ecommerce-products/ThinkPadT490.jpg"}" alt="${p.name}">
         <h3>${p.name}</h3>
         <div class="row">
           <div class="muted">$${Number(p.price).toFixed(2)}</div>

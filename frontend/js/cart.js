@@ -4,11 +4,11 @@ function renderStatus() {
   if (!status) return;
 
   if (status === "success") {
-    el.innerHTML = `<div class="notice success">✅ Payment successful (test mode). Thank you!</div>`;
-    // Optional: clear cart after success
+    el.innerHTML = `<div class="notice success"> Payment successful (test mode). Thank you!</div>`;
+
     setCart([]);
   } else if (status === "cancel") {
-    el.innerHTML = `<div class="notice warn">⚠️ Payment cancelled.</div>`;
+    el.innerHTML = `<div class="notice warn"> Payment cancelled.</div>`;
   }
 }
 
@@ -51,7 +51,6 @@ async function checkout() {
     return;
   }
 
-  // Stripe session expects name/price/quantity
   const payload = { items: items, currency: "USD" };
 
   try {
