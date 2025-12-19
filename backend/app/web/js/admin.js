@@ -13,7 +13,7 @@ async function loadOrders() {
     return;
   }
 
-  const res = await fetch(`${API_BASE}/orders`, {
+  const res = await fetch(`${API_BASE}/orders/`, {
     headers: { "X-Admin-Password": password }
   });
 
