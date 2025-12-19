@@ -72,7 +72,7 @@ async function checkout() {
   const payload = { items: items, currency: "USD" };
 
   try {
-    const res = await apiPost("/checkout", payload);
+    const res = await apiPost("/checkout/", payload);
     window.location.href = res.checkout_url;
   } catch (e) {
     alert(`Checkout failed: ${e.message}`);

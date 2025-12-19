@@ -3,7 +3,7 @@ from app.controllers.order_controller import create_order, get_all_orders
 from app.auth import verify_admin
 
 
-router = APIRouter(prefix="/orders", tags=["Orders"])
+router = APIRouter(prefix="/orders/", tags=["Orders"])
 
 @router.post("/")
 def place_order(order: dict):

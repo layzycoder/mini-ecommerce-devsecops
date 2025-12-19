@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from app.controllers.product_controller import get_all_products, get_product_by_id
 
-router = APIRouter(prefix="/products", tags=["Products"])
+router = APIRouter(prefix="/products/", tags=["Products"])
 
 @router.get("/")
 def list_products():
