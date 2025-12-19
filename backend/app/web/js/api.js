@@ -1,4 +1,4 @@
-const API_BASE = "";
+const API_BASE = window.location.origin;
 
 async function apiGet(path) {
   const res = await fetch(`${API_BASE}${path}`);
