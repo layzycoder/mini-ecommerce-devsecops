@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Request
 import stripe
 from app.security import get_stripe_secret_key
 
-router = APIRouter(prefix="/checkout/", tags=["Checkout"])
+router = APIRouter(prefix="/checkout", tags=["Checkout"])
 
 @router.post("/")
 def create_checkout_session(request: Request, order: dict):
