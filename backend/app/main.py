@@ -4,6 +4,10 @@ from app.routes import products
 from app.routes import orders
 from app.routes import checkout
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+import os
+
 
 app = FastAPI(title="E-Commerce API")
 
@@ -14,6 +18,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+WEB_DIR = os.path.join(BASE_DIR, "web")
+
+app.mount("/css", StaticFiles(directory=os.path.join(WEB_DIR, "css")), name="css")
+app.mount("/js", StaticFiles(directory=os.path.join(WEB_DIR, "js")), name="js")
+
+images_dir = os.path.join(WEB_DIR, "images")
+if os.path.isdir(images_dir):
+    app.mount("/images", StaticFiles(directory=images_dir), name="images")
 
 @app.get("/health")
 def health_check():
@@ -56,3 +70,25 @@ def payment_cancel():
 app.include_router(products.router)
 app.include_router(orders.router)
 app.include_router(checkout.router)
+
+
+# Pages
+@app.get("/")
+def serve_home():
+    return FileResponse(os.path.join(WEB_DIR, "index.html"))
+
+@app.get("/products.html")
+def serve_products_page():
+    return FileResponse(os.path.join(WEB_DIR, "products.html"))
+
+@app.get("/product.html")
+def serve_product_page():
+    return FileResponse(os.path.join(WEB_DIR, "product.html"))
+
+@app.get("/cart.html")
+def serve_cart_page():
+    return FileResponse(os.path.join(WEB_DIR, "cart.html"))
+
+@app.get("/admin.html")
+def serve_admin_page():
+    return FileResponse(os.path.join(WEB_DIR, "admin.html"))

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin / Orders</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-badge">RJ</div>
+      <div>Mini E-Commerce</div>
+    </div>
+    <div class="menu">
+      <a href="/">Home</a>
+      <a href="/products.html">Products</a>
+      <a href="/cart.html">Cart</a>
+      <a href="/admin.html">Admin</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 style="margin-top:6px;">Admin / Orders</h2>
+
+    <div class="row">
+      <input id="password" class="input" placeholder="Admin Password" type="password">
+      <button class="btn" id="loadBtn">Load Orders</button>
+    </div>
+
+    <div id="adminMsg" style="margin-top:10px;"></div>
+    <table class="table" id="ordersTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Created</th>
+          <th>Currency</th>
+          <th>Total</th>
+          <th>Items</th>
+        </tr>
+      </thead>
+      <tbody id="ordersBody"></tbody>
+    </table>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

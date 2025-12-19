@@ -1,13 +1,12 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 import stripe
 from app.security import get_stripe_secret_key
 
 router = APIRouter(prefix="/checkout", tags=["Checkout"])
 
-
-
 @router.post("/")
-def create_checkout_session(order: dict):
+def create_checkout_session(request: Request, order: dict):
+
     try:
         stripe.api_key = get_stripe_secret_key()
         line_items = []
@@ -31,8 +30,10 @@ def create_checkout_session(order: dict):
             payment_method_types=["card"],
             line_items=line_items,
             mode="payment",
-            success_url="http://127.0.0.1:3000/cart.html?status=success",
-            cancel_url="http://127.0.0.1:3000/cart.html?status=cancel",
+            success_url=f"{request.base_url}cart.html?status=success",
+            cancel_url=f"{request.base_url}cart.html?status=cancel",
+            # success_url="http://127.0.0.1:3000/cart.html?status=success",
+            # cancel_url="http://127.0.0.1:3000/cart.html?status=cancel",
         )
 
         return {
