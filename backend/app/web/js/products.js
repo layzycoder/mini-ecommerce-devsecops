@@ -6,7 +6,7 @@
       const div = document.createElement("div");
       div.className = "card";
       div.innerHTML = `
-        <img src="${p.image_url || "https://via.placeholder.com/300x200"}" alt="${p.name}">
+        <img src="${p.image_url || "https://storage.googleapis.com/mini-ecommerce-products/ThinkPadT490.jpg"}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p class="muted">$${Number(p.price).toFixed(2)}</p>
         <div class="row">

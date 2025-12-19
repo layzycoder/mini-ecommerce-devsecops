@@ -9,7 +9,7 @@
   try {
     const p = await apiGet(`/products/${encodeURIComponent(id)}`);
     detail.innerHTML = `
-      <img src="${p.image_url || "https://via.placeholder.com/700x300"}" alt="${p.name}">
+      <img src="${p.image_url || "https://storage.googleapis.com/mini-ecommerce-products/ThinkPadT490.jpg"}" alt="${p.name}">
       <h2 style="margin:12px 0 6px;">${p.name}</h2>
       <p class="muted" style="margin:0 0 10px;">$${Number(p.price).toFixed(2)}</p>
       <p class="muted">${p.description || "No description provided."}</p>
