@@ -1,7 +1,7 @@
 (async function () {
   const container = document.getElementById("products");
   try {
-    const products = await apiGet("/products");
+    const products = await apiGet("/products/");
     products.forEach(p => {
       const div = document.createElement("div");
       div.className = "card";

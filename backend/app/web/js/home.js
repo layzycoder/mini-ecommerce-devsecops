@@ -1,7 +1,7 @@
 (async function () {
   const featured = document.getElementById("featured");
   try {
-    const products = await apiGet("/products");
+    const products = await apiGet("/products/");
     products.slice(0, 10).forEach(p => {
       const div = document.createElement("div");
       div.className = "card";
